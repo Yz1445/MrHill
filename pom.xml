@@ -76,7 +76,7 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.31</version>
         </dependency>
-        <!--使用JOL工具类，打印对象头-->
+        <!--使用JOL工具类，打印对象头 -->
         <dependency>
             <groupId>org.openjdk.jol</groupId>
             <artifactId>jol-core</artifactId>
