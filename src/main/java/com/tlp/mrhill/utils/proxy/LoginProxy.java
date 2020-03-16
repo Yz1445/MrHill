@@ -20,7 +20,7 @@ public class LoginProxy implements InvocationHandler {
             System.out.println("arg:"+o.getClass());
         }
         result = method.invoke(object,args);
-        System.out.println("事物结束");
+        System.out.println("事物结束!");
         return result;
     }
 }
