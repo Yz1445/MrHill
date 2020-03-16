@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>登陆</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" >
+    <link rel="stylesheet" th:href="@{/static/css/app.css}"/>
+</head>
+<script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
+<script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:src="@{/js/login.js}"></script>
+
+<body>
+<div class="container">
+    <form class="form-signin" th:action="@{/MrHill/logindemo}" method="post">
+        <h2 class="form-signin-heading">Please sign in ssss</h2>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" th:name="password" class="form-control" placeholder="Password" required>
+        <div th:if="${errorFlg}">
+            <strong th:text="${errorMsg}"></strong>
+        </div>
+        <div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+    <button onclick="aaa()" class="btn btn-lg btn-primary btn-block" type="button">test</button>
+    <p id="demo" >这是一个段落</p>
+</div>
+
+</body>
+</html>

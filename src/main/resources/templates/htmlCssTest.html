@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/htmlHead :: common_header(~{::title},~{::link},~{})">
+    <meta charset="UTF-8">
+    <title>页面测试</title>
+
+</head>
+
+<body>
+<div th:id="index" class="right_col" role="main"></div>
+<div th:replace="common/htmlFoot :: foot"></div>
+</body>
+<script th:src="@{/static/js/htmlCssTest.js}"></script>
+</html>
