@@ -8,7 +8,7 @@ public class UserVO {
     public String password;
 
     public String phone;
-
+    public UserVO(){}
     public UserVO(String userId,String userName,String password, String phone){
         this.userId = userId;
         this.userName = userName;
