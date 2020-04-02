@@ -82,7 +82,11 @@
             <artifactId>jol-core</artifactId>
             <version>0.8</version>
         </dependency>
-
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>3.2.12</version>
+        </dependency>
 <!-- ****************************新添加结束*****************************************-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
