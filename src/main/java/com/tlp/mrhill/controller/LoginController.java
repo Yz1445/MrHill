@@ -57,7 +57,7 @@ public class LoginController {
         User u = new User();
         u.setUserName(request.getParameter("username"));
         u.setPassword(request.getParameter("password"));
-        Login li = (Login) loginProxy.bind(login);
+        Login li = (Login) loginProxy.bind(login);//使用了JDK动态代理
         User user = li.longin(u);
         HttpSession session = request.getSession();
         if (session.getAttribute(loginConfig.SESSION_KEY) != null) {

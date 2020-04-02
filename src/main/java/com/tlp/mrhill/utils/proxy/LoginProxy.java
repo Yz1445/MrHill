@@ -1,5 +1,6 @@
 package com.tlp.mrhill.utils.proxy;
 
+import com.tlp.mrhill.model.User;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.InvocationHandler;
@@ -18,6 +19,8 @@ public class LoginProxy implements InvocationHandler {
         System.out.println("事物开始"+method.getName());
         for (Object o : args){
             System.out.println("arg:"+o.getClass());
+            User u = (User) o;
+            System.out.println(">>>>>>>>>"+u.getUserName());
         }
         result = method.invoke(object,args);
         System.out.println("事物结束!");
