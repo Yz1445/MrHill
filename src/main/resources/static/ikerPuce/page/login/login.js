@@ -37,14 +37,14 @@ layui.use(['form','layer','jquery'],function(){
 								 obj  = eval("("+result+")");
 							 }
 							 console.info("登录成功："+obj)
-							 window.location.href = "/layuicms2.0-master/index.html";
+							 window.location.href = "/ikerPuce/index.html";
 						}
 						
 			
 			        }
 		});
         setTimeout(function(){
-            // window.location.href = "/layuicms2.0-master/index.html";
+            // window.location.href = "/ikerPuce/index.html";
         },1000);
         return false;
     })
