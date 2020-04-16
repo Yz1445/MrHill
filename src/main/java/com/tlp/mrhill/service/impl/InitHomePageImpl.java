@@ -19,6 +19,7 @@ public class InitHomePageImpl implements InitHomePage {
     public Menu getMenu() {
         Menu mu = menuMapper.selectByPrimaryKey(MrHillTypeEnum.PROJECTNAME.getResultCode());
         if (Objects.isNull(mu)) {
+            mu = new Menu();
             mu.setMenuname(MrHillTypeEnum.PROJECTNAME.getResultName());
             mu.setMenuid(MrHillTypeEnum.PROJECTNAME.getResultCode());
         }

@@ -11,6 +11,7 @@ import com.tlp.mrhill.utils.ErrorCodeEnum;
 import com.tlp.mrhill.utils.proxy.LoginProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-
+@CrossOrigin
 public class LoginController {
     @Autowired
     HttpServletRequest request;
@@ -53,40 +54,41 @@ public class LoginController {
         return modelAndView;
     }
     @RequestMapping("/MrHill/logindemo")
-    public ModelAndView logindemo(ModelAndView modelAndView){
+    @ResponseBody
+    public void logindemo(ModelAndView modelAndView) throws IOException {
         User u = new User();
         u.setUserName(request.getParameter("username"));
         u.setPassword(request.getParameter("password"));
         Login li = (Login) loginProxy.bind(login);//使用了JDK动态代理
         User user = li.longin(u);
         HttpSession session = request.getSession();
-        if (session.getAttribute(loginConfig.SESSION_KEY) != null) {
-            user = (User) session.getAttribute(loginConfig.SESSION_KEY);
-        } else {
-            System.out.println("session是NULL");
-        }
+//        if (session.getAttribute(loginConfig.SESSION_KEY) != null) {
+//            user = (User) session.getAttribute(loginConfig.SESSION_KEY);
+//        } else {
+//            System.out.println("session是NULL");
+//        }
         if (user != null) {
             mapUser.put(user.getUserName(),user.getPassword());
             System.out.println("session:"+session.isNew());
             System.out.println("新建session");
             session.setAttribute(loginConfig.SESSION_KEY,user);
-            modelAndView.addObject("MenuName",initHomePage.getMenu().getMenuname());
-            modelAndView.addObject("UserName",user.getUserName());
-            modelAndView.addObject("Name",user.getName());
-            modelAndView.setViewName("indexDemo");
+//            modelAndView.addObject("MenuName",initHomePage.getMenu().getMenuname());
+//            modelAndView.addObject("UserName",user.getUserName());
+//            modelAndView.addObject("Name",user.getName());
+//            modelAndView.setViewName("indexDemo");
         } else {
-            modelAndView.setViewName("login");
-            modelAndView.addObject("errorFlg",true);
-            modelAndView.addObject("errorMsg",ErrorCodeEnum.userOrPaaswordError.getResultMsg());
+//            modelAndView.setViewName("login");
+//            modelAndView.addObject("errorFlg",true);
+//            modelAndView.addObject("errorMsg",ErrorCodeEnum.userOrPaaswordError.getResultMsg());
         }
-        return modelAndView;
+        response.getWriter().println(JSON.toJSONString(user));
     }
     @RequestMapping("/MrHill/getAllUser")
     @ResponseBody
     public void getAllUser(int curr, int nums) throws IOException {
         response.getWriter().println(JSON.toJSONString(login.findAllUser(curr,nums)));
     }
-//    @ResponseBody
+    @ResponseBody
     @RequestMapping("/MrHill/test")
     public String loginTest(){
         return "topTiles";

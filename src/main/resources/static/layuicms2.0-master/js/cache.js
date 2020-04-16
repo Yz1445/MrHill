@@ -84,11 +84,13 @@ layui.use(['form','jquery',"layer"],function() {
         $(".admin-header-lock-input").focus();
     }
     $(".lockcms").on("click",function(){
+        console.info(">>>>>>>>>>>>>>")
         window.sessionStorage.setItem("lockcms",true);
         lockPage();
     })
     // 判断是否显示锁屏
     if(window.sessionStorage.getItem("lockcms") == "true"){
+		console.info("判断是否显示锁屏");
         lockPage();
     }
     // 解锁

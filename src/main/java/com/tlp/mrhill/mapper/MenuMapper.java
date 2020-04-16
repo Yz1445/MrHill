@@ -1,7 +1,9 @@
 package com.tlp.mrhill.mapper;
 
 import com.tlp.mrhill.model.Menu;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface MenuMapper {
     int deleteByPrimaryKey(Integer menuid);
 

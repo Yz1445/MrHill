@@ -11,9 +11,40 @@ layui.use(['form','layer','jquery'],function(){
 
     //登录按钮
     form.on("submit(login)",function(data){
-        $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
+		// console.info(data.field.userName)
+		// layer.msg(data.field)
+        // $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
+		// table.render({
+		// 	// elem: this,
+		// 	url:'http://127.0.0.1:9000/MrHill/test',
+		// 	parseData: function(res){ 
+		// 		console.info(res);
+		// 	}
+		// });
+		$.ajax({
+			 url:"http://127.0.0.1:9000/MrHill/logindemo",
+			        data:{username:data.field.userName,password:data.field.password},
+			        type:"POST",
+			        dataTpye:"json",
+			        success:function (result) {
+						console.info(result)
+						if (null != result && "null" != result) {
+							var obj;
+							 //判断是否是json格式
+							 if((typeof result=='object')&&result.constructor==Object){
+								 obj=result;
+							 }else{
+								 obj  = eval("("+result+")");
+							 }
+							 console.info("登录成功："+obj)
+							 window.location.href = "/layuicms2.0-master/index.html";
+						}
+						
+			
+			        }
+		});
         setTimeout(function(){
-            window.location.href = "/layuicms2.0";
+            // window.location.href = "/layuicms2.0-master/index.html";
         },1000);
         return false;
     })

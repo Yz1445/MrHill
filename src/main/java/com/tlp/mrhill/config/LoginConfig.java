@@ -20,7 +20,7 @@ public class LoginConfig implements WebMvcConfigurer {
                 .addPathPatterns("/MrHill/**")
                 .excludePathPatterns("/index.html")
                 .excludePathPatterns("/login.html")
-                //对注册接口不进行拦截
+                //对登录注册接口不进行拦截
                 .excludePathPatterns("/MrHill/logindemo");
     }
     @Override
