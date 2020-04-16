@@ -50,7 +50,7 @@ public class LoginController {
     public ModelAndView login(ModelAndView modelAndView){
         System.out.println("被调用了");
         modelAndView.addObject("MenuName",initHomePage.getMenu().getMenuname());
-        modelAndView.setViewName("login");
+        modelAndView.setViewName("loginTest");
         return modelAndView;
     }
     @RequestMapping("/MrHill/logindemo")

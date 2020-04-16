@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/htmlHead :: common_header(~{::title},~{::link},~{})">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<style type="text/css">
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+</style>
+
+<body>
+<div th:replace="common/htmlFoot :: foot"></div>
+<script type="text/javascript">
+    $(function(){
+        changeWH();
+    });
+    function changeWH(){
+        console.info($(document).height());
+        $("#myiframe").height($(document).height());
+        $("#myiframe").width($(document).width());
+    }
+    window.onresize=function(){
+        changeWH();
+    }
+
+</script>
+<iframe scrolling="no" id="myiframe" name="main" frameborder="0" SRC="../static/ikerPuce/page/login/login.html" style="min-height:600px;width:100%;height:100%;"></iframe>
+</body>
+</html>

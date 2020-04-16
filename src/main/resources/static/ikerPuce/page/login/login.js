@@ -1,6 +1,12 @@
-layui.use(['form','layer','jquery'],function(){
+layui.config({
+	base:'../../js/common/'
+})
+
+layui.use(['form','layer','jquery','common'],function(){
+	
     var form = layui.form,
-        layer = parent.layer === undefined ? layui.layer : top.layer
+        layer = parent.layer === undefined ? layui.layer : top.layer,
+		common = layui.common,
         $ = layui.jquery;
 
     $(".loginBody .seraph").click(function(){
@@ -8,44 +14,41 @@ layui.use(['form','layer','jquery'],function(){
             time:5000
         });
     })
-
+	var vm = new Vue({
+		el:"#mount",
+		data: common
+	});	
     //登录按钮
     form.on("submit(login)",function(data){
-		// console.info(data.field.userName)
-		// layer.msg(data.field)
-        // $(this).text("登录中...").attr("disabled","disabled").addClass("layui-disabled");
-		// table.render({
-		// 	// elem: this,
-		// 	url:'http://127.0.0.1:9000/MrHill/test',
-		// 	parseData: function(res){ 
-		// 		console.info(res);
-		// 	}
-		// });
+		var url = "../../json/login.json";
+		var type = "GET";
+		if (common.pattern == 1) {
+			url="http://127.0.0.1:9000/MrHill/logindemo",
+			type="POST";
+		}
 		$.ajax({
-			 url:"http://127.0.0.1:9000/MrHill/logindemo",
-			        data:{username:data.field.userName,password:data.field.password},
-			        type:"POST",
-			        dataTpye:"json",
-			        success:function (result) {
-						console.info(result)
-						if (null != result && "null" != result) {
-							var obj;
-							 //判断是否是json格式
-							 if((typeof result=='object')&&result.constructor==Object){
-								 obj=result;
-							 }else{
-								 obj  = eval("("+result+")");
-							 }
-							 console.info("登录成功："+obj)
-							 window.location.href = "/ikerPuce/index.html";
-						}
-						
-			
-			        }
+			url:url,
+			data:{username:data.field.userName,password:data.field.password},
+			type:type,
+			dataTpye:"json",
+			success:function (result) {
+				console.info(result)
+				var obj;
+				 //判断是否是json格式
+				 if((typeof result=='object')&&result.constructor==Object){
+					 obj=result;
+				 }else{
+					 obj  = eval("("+result+")");
+				 }
+				if (null != obj && "null" != obj) {
+					window.sessionStorage.setItem("userName",obj.name);//写入
+					window.location.href = "/ikerPuce/index.html";
+				} else {
+					layer.msg("登录失败!账户或密码错误！")
+					// common.UserNameLabel = "账号错误！"
+				}
+			}
 		});
-        setTimeout(function(){
-            // window.location.href = "/ikerPuce/index.html";
-        },1000);
         return false;
     })
 

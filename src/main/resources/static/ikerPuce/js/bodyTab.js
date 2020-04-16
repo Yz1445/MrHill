@@ -19,6 +19,7 @@ layui.define(["element","jquery"],function(exports){
 		};
     //生成左侧菜单
     Tab.prototype.navBar = function(strData){
+		console.info("生成左侧菜单")
         var data;
         if(typeof(strData) == "string"){
             var data = JSON.parse(strData); //部分用户解析出来的是字符串，转换一下

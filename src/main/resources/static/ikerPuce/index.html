@@ -13,9 +13,11 @@
 	<link rel="icon" href="lu2.ico">
 	<link rel="stylesheet" href="layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="css/index.css" media="all" />
+	<script src="vue/vue.js" type="text/javascript" charset="UTF-8"></script>
 </head>
 <body class="main_body">
-	<div class="layui-layout layui-layout-admin">
+	<div id="mountIndex">
+		<div class="layui-layout layui-layout-admin">
 		<!-- 顶部 -->
 		<div class="layui-header header">
 			<div class="layui-main mag0">
@@ -73,8 +75,8 @@
 		<!-- 左侧导航 -->
 		<div class="layui-side layui-bg-black">
 			<div class="user-photo">
-				<a class="img" title="我的头像" ><img src="images/ikerpuce_logo.jpg" class="userAvatar"></a>
-				<p>你好！<span class="userName">亿科浦思科技</span>, 欢迎登录</p>
+				<a class="img" v-bind:title="LogoName" ><img src="images/ikerpuce_logo.jpg" class="userAvatar"></a>
+				<p>{{Hello}}<span class="userName">{{LogOnUser}}</span>{{LogOnUserAfter}}</p>
 			</div>
 			<!-- 搜索 -->
 			<div class="layui-form component">
@@ -88,7 +90,7 @@
 			<div class="navBar layui-side-scroll" id="navBar">
 				<ul class="layui-nav layui-nav-tree">
 					<li class="layui-nav-item layui-this">
-						<a href="javascript:;" data-url="page/main.html"><cite>后台首页</cite></a>
+						<a href="javascript:;" data-url="page/main.html"><cite></cite></a>
 					</li>
 				</ul>
 			</div>
@@ -122,7 +124,7 @@
 			<p><span>copyright @2020 亿科浦思科技</span></p>
 		</div>
 	</div>
-
+	</div>
 	<!-- 移动导航 -->
 	<div class="site-tree-mobile"><i class="layui-icon">&#xe602;</i></div>
 	<div class="site-mobile-shade"></div>

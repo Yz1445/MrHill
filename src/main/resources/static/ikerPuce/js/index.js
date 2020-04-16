@@ -2,10 +2,12 @@ var $,tab,dataStr,layer;
 layui.config({
 	base : "js/"
 }).extend({
-	"bodyTab" : "bodyTab"
+	"bodyTab" : "bodyTab",
+	"common" : "/common/common"
 })
-layui.use(['bodyTab','form','element','layer','jquery'],function(){
+layui.use(['bodyTab','form','element','layer','jquery','common'],function(){
 	var form = layui.form,
+		common = layui.common,
 		element = layui.element;
 		$ = layui.$;
     	layer = parent.layer === undefined ? layui.layer : top.layer;
@@ -13,12 +15,22 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 			openTabNum : "50",  //最大可打开窗口数量
 			url : "json/navs.json" //获取菜单json地址
 		});
-
+		
+	/*********************用Vue给导航栏左侧用户赋值*************************/
+	var vm1= new Vue({
+		el:"#mountIndex",
+		data: common
+	});
+	common.LogOnUser = window.sessionStorage.getItem("userName");
+	/*********************用Vue给导航栏左侧用户赋值*************************/
+	
 	//通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
 	function getData(json){
-		console.info("-----------")
+		
+
 		$.getJSON(tab.tabConfig.url,function(data){
 			if(json == "contentManagement"){
+				console.info("......",data.contentManagement);
 				dataStr = data.contentManagement;
 				console.info(dataStr);
 				//重新渲染左侧菜单
@@ -41,6 +53,7 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 	//页面加载时判断左侧菜单是否显示
 	//通过顶部菜单获取左侧菜单
 	$(".topLevelMenus li,.mobileTopLevelMenus dd").click(function(){
+		console.info("-----------------")
 		if($(this).parents(".mobileTopLevelMenus").length != "0"){
 			$(".topLevelMenus li").eq($(this).index()).addClass("layui-this").siblings().removeClass("layui-this");
 		}else{
@@ -65,6 +78,7 @@ layui.use(['bodyTab','form','element','layer','jquery'],function(){
 	})
 
 	//通过顶部菜单获取左侧二三级菜单   注：此处只做演示之用，实际开发中通过接口传参的方式获取导航数据
+	console.info("-------1----------")
 	getData("contentManagement");
 
 	//手机设备的简单适配
